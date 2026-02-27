@@ -583,8 +583,7 @@
     </div>
 
     <script>
-        const API_BASE = 'http://127.0.0.1:5000';
-
+const API_BASE = '';
         function createParticles() {
             const container = document.getElementById('particles');
             for (let i = 0; i < 20; i++) {
@@ -741,7 +740,7 @@
             const aiAnalysis = data.analysis.ai_analysis;
             const aiCard = document.querySelector('.ai-card');
             if (aiAnalysis.verdict === 'UNKNOWN') {
-                // Ẩn toàn bộ card AI khi lỗi
+    
                 aiCard.style.display = 'none';
             } else {
                 aiCard.style.display = 'block';
