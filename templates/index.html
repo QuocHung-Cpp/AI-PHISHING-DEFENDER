@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>🛡️ AI Phishing Defender - Advanced Security</title>
     <style>
         * {
@@ -452,15 +452,55 @@
         }
 
         @media (max-width: 768px) {
+            body { padding: 10px; }
+
             .main-card {
-                padding: 30px 20px;
+                padding: 20px 15px;
                 border-radius: 20px;
             }
-            .header { padding: 40px 15px 30px; }
-            .details-grid { grid-template-columns: 1fr; }
-            .score-circle { width: 140px; height: 140px; }
-            .score-value { font-size: 2.5em; }
-            .loading-steps { gap: 15px; }
+
+            .header { padding: 30px 10px 20px; }
+            .header h1 { font-size: 2em; }
+            .header .subtitle { font-size: 0.9em; }
+
+            .url-input {
+                padding: 15px 50px 15px 15px;
+                font-size: 14px;
+            }
+
+            .scan-btn {
+                padding: 15px;
+                font-size: 1em;
+            }
+
+            .details-grid { grid-template-columns: 1fr; gap: 15px; }
+
+            .score-circle { width: 130px; height: 130px; }
+            .score-circle svg { width: 130px; height: 130px; }
+            #progressCircle, .score-circle svg circle { cx: 65; cy: 65; r: 55; }
+            .score-value { font-size: 2.2em; }
+
+            .verdict-badge { font-size: 1em; padding: 10px 20px; }
+
+            .detail-card { padding: 20px 15px; }
+            .detail-card h3 { font-size: 1.1em; }
+            .detail-label { font-size: 0.85em; }
+            .detail-value { font-size: 0.85em; }
+
+            .loading-steps { 
+                gap: 8px; 
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer { padding: 20px 10px; font-size: 0.8em; }
+        }
+
+        @media (max-width: 400px) {
+            .header h1 { font-size: 1.6em; }
+            .main-card { padding: 15px 12px; }
+            .score-circle { width: 110px; height: 110px; }
+            .score-value { font-size: 1.8em; }
         }
 
         .footer {
@@ -578,12 +618,14 @@
         </div>
 
         <div class="footer">
-            <p>Developed with ❤️ by [Team : WLS ] | Powered by Claude AI</p>
+            <p>Developed with ❤️ by [Your Name] | Powered by Claude AI</p>
         </div>
     </div>
 
     <script>
-const API_BASE = '';
+        // ⚠️ QUAN TRỌNG: Luôn trỏ về Flask port 5000, KHÔNG dùng Live Server
+        const API_BASE = 'http://127.0.0.1:5000';
+
         function createParticles() {
             const container = document.getElementById('particles');
             for (let i = 0; i < 20; i++) {
@@ -740,7 +782,7 @@ const API_BASE = '';
             const aiAnalysis = data.analysis.ai_analysis;
             const aiCard = document.querySelector('.ai-card');
             if (aiAnalysis.verdict === 'UNKNOWN') {
-    
+                // Ẩn toàn bộ card AI khi lỗi
                 aiCard.style.display = 'none';
             } else {
                 aiCard.style.display = 'block';
